@@ -1,7 +1,7 @@
 # cscart-paytos-payment
 
 ## cscart 托付支付安装方法
-
+### 适用于cscart 4.3.2版本
 ### 解压并复制文件
 #### 解压文件
 tar -xvf cscart-tuofu-payment.tar.gz
