@@ -55,8 +55,8 @@ if($paytos_cfg["status"]=="0000"){
     $pp_response['reason_text'] = $message;
     $pp_response['transaction_id'] = $data['OrderID'];
 
-    fn_finish_payment($data['OrderID'], $pp_response);
-    //fn_order_placement_routines('route', $data['OrderID'], false);
+    fn_finish_payment($order_id, $pp_response);
+    fn_order_placement_routines('route', $order_id, false);
        
 }else{
     $pp_response['order_status'] = 'O';
@@ -67,20 +67,20 @@ if($paytos_cfg["status"]=="0000"){
         $message = $paytos_cfg['msg'];
         //fn_set_notification('E', $message);
         $pp_response['order_status'] = 'F';
-	$pp_response['reason_text'] = $message;
-	$pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
+	    $pp_response['reason_text'] = $message;
+	    $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
 
     } else {
         $message = $paytos_cfg['msg'];
         //fn_set_notification('E', $message);
         $pp_response['order_status'] = 'O';
-	$pp_response['reason_text'] = $message;
-	$pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
+	    $pp_response['reason_text'] = $message;
+	    $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
     }
 
     // var_dump($payments_post_data);
-    fn_finish_payment($paytos_cfg['data']['orderNO'], $pp_response);
-    //fn_order_placement_routines('route', $paytos_cfg['data']['orderNO'], false);
+    fn_finish_payment($order_id, $pp_response);
+    fn_order_placement_routines('route', $order_id, false);
 }
 
 exit;
