@@ -67,14 +67,14 @@ if($paytos_cfg["status"]=="0000"){
         $message = $paytos_cfg['msg'];
         //fn_set_notification('E', $message);
         $pp_response['order_status'] = 'F';
-	    $pp_response['reason_text'] = $message;
+	    $pp_response['reason_text'] = 'Very Sorry. Your issuing bank or credit card company said \'' . $message . '\'. Please try to contact with your issuing bank or use a different card and try again.';
 	    $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
 
     } else {
         $message = $paytos_cfg['msg'];
         //fn_set_notification('E', $message);
         $pp_response['order_status'] = 'O';
-	    $pp_response['reason_text'] = $message;
+	    $pp_response['reason_text'] = 'Very Sorry. Your issuing bank or credit card company said \'' . $message . '\'. Please try to contact with your issuing bank or use a different card and try again.';
 	    $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
     }
 

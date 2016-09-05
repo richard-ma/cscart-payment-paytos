@@ -21,7 +21,7 @@ mv tuofu.tpl /home/wwwroot/bellshoe.com/design/backend/templates/views/payments/
 ![](./images/2.jpg)
 #### 填写支付方式名称（自己随意起一个名字）和选择processor为Tuofu
 ![](./images/3.jpg)
-#### 选择托付支付后会出现Configure选项卡，点击填入托付支付的用户名和密钥，最后单击save
+#### 选择托付支付后会出现Configure选项卡，点击填入托付支付的用户名和密钥，并选择支付用的货币种类，最后单击save
 ![](./images/4.jpg)
 #### 前台已经可以通过托付支付了，安装完毕
 
