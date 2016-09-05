@@ -1,1 +1,1 @@
-INSERT INTO `cscart_payment_processors` (`processor`, `processor_script`, `processor_template`, `admin_template`, `callback`, `type`, `addon`) VALUES ('Tuofu', 'tuofu.php', 'views/orders/components/payments/cc.tpl', 'tuofu.tpl', 'Y', 'P', '');
+INSERT INTO `cscart_payment_processors` (`processor`, `processor_script`, `processor_template`, `admin_template`, `callback`, `type`, `addon`) VALUES ('Tuofu', 'tuofu.php', 'views/orders/components/payments/cc.tpl', 'tuofu.tpl', 'N', 'P', '');
