@@ -15,7 +15,9 @@ $data['CardPAN'] = $payment_info["card_number"];
 $data['ExpirationMonth'] = $payment_info["expiry_month"];
 $data['ExpirationYear'] = $payment_info["expiry_year"];
 $data['CVV2'] = $payment_info["cvv2"];
+$data['CName'] = $payment_info['cardholder_name'];
 $data['IPAddress'] = get_client_ip();
+$data['BAddress'] = $order_info['b_address'];
 $data['BCity'] = $order_info['b_city'];
 $data['Bstate'] = $order_info["b_state_descr"];
 $data['Bcountry'] = $order_info['b_country_descr'];
@@ -23,7 +25,7 @@ $data['BCountryCode'] = $order_info['b_country'];
 $data['PostCode'] =  $order_info['b_zipcode'];
 $data['Email'] =  $order_info['email'];
 $data['Telephone'] = $order_info['phone'];
-$data['Pname'] = string_replace(get_product_names($order_info));
+$data['PName'] = string_replace(get_product_names($order_info));
 $data['IFrame'] = '1';
 $data['URL'] = $_SERVER["HTTP_HOST"];
 $data['OrderUrl'] = $_SERVER["HTTP_HOST"];
@@ -156,7 +158,7 @@ function get_client_ip() {
 }
 
 function get_paytos_order_id($order_id) {
-    $pre_order = substr($_SERVER["HTTP_HOST"],0,2);
+    $pre_order = substr($_SERVER["HTTP_HOST"],0,2) . date('YmdHis');
     $paytos_orderid = $pre_order.$order_id;
     return $paytos_orderid;
 }
