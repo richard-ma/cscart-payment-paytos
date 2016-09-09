@@ -51,34 +51,35 @@ $result = curl_post($gatewayUrl, http_build_query($data, '', '&'));
 $paytos_cfg = json_decode($result,true);
 //fn_print_r($paytos_cfg);
 
+$message = $paytos_cfg['msg'];
 if($paytos_cfg["status"]=="0000"){
-    $message = $paytos_cfg['msg'];
     $pp_response['order_status'] = 'P';
     $pp_response['reason_text'] = $message;
-    $pp_response['transaction_id'] = $data['OrderID'];
+    $pp_response['transaction_id'] = $paytos_cfg['data']['par3'];
 
     fn_finish_payment($order_id, $pp_response);
     fn_order_placement_routines('route', $order_id, false);
        
 }else{
-    $pp_response['order_status'] = 'O';
-    $pp_response['reason_text'] = 'No messages.';
-    $pp_response['transaction_id'] = $data['OrderID'];
+    $pp_response['order_status'] = 'F';
+    $pp_response['reason_text'] = 'Very Sorry. Your issuing bank or credit card company said \'' . $message . '\'. Please try to contact with your issuing bank or use a different card and try again.';
 
+/*
     if($paytos_cfg["isPendingPayment"]==false){
         $message = $paytos_cfg['msg'];
         //fn_set_notification('E', $message);
         $pp_response['order_status'] = 'F';
-	    $pp_response['reason_text'] = 'Very Sorry. Your issuing bank or credit card company said \'' . $message . '\'. Please try to contact with your issuing bank or use a different card and try again.';
-	    $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
+        $pp_response['reason_text'] = 'Very Sorry. Your issuing bank or credit card company said \'' . $message . '\'. Please try to contact with your issuing bank or use a different card and try again.';
+        $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
 
     } else {
         $message = $paytos_cfg['msg'];
         //fn_set_notification('E', $message);
         $pp_response['order_status'] = 'O';
-	    $pp_response['reason_text'] = 'Very Sorry. Your issuing bank or credit card company said \'' . $message . '\'. Please try to contact with your issuing bank or use a different card and try again.';
-	    $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
+        $pp_response['reason_text'] = 'Very Sorry. Your issuing bank or credit card company said \'' . $message . '\'. Please try to contact with your issuing bank or use a different card and try again.';
+        $pp_response['transaction_id'] = $paytos_cfg['data']['orderNO'];
     }
+*/
 
     // var_dump($payments_post_data);
     fn_finish_payment($order_id, $pp_response);
@@ -158,7 +159,10 @@ function get_client_ip() {
 }
 
 function get_paytos_order_id($order_id) {
+/*
     $pre_order = substr($_SERVER["HTTP_HOST"],0,2) . date('YmdHis');
     $paytos_orderid = $pre_order.$order_id;
     return $paytos_orderid;
+*/
+    return $order_id;
 }
