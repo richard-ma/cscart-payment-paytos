@@ -1,4 +1,4 @@
-# cscart-paytos-payment
+# cscart-payment-paytos
 
 ## cscart 托付支付安装方法
 ### 适用于cscart 4.3.2版本
